@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;;AAIA","sources":["style.css"],"sourcesContent":["body{\n    margin:0;\n    padding:0;\n}\n.header{\n    display: flex;\n    flex-direction: row;\n    width:100%;\n    justify-content: space-evenly;\n}"],"names":[],"version":3,"file":"style.3a01df49.css.map","sourceRoot":"/__parcel_source_root/"}
