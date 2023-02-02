@@ -1,30 +1,20 @@
 import React from "react";
 import ReactDOM  from "react-dom/client";
-const h1 = React.createElement("h1",{className:"heading"},"Hello World");
-const ul = React.createElement("ul",{className:"fruits"},[
-    React.createElement("li",{
-        className:"apple",
-        key:"apple"  },
-        "Apple"),
-    React.createElement("li",{
-        className:"orange",
-        key:"orange"},
-        "Orange"),
-    React.createElement("li",{
-        className:"banana",
-        key:"banana"},
-        "Banana"),
-    React.createElement("li",{
-        className:"mango",
-        key:"mango"},
-        "Mango"),
-    React.createElement("li",{
-        className:"grapes",
-        key:"grapes"},
-        "Grapes")
-]);
-const container = React.createElement("div",{id:"container"},[
-    h1,ul
-])
+
+
+function Header(){
+    return <div className="header">
+       <img src="https://raw.githubusercontent.com/slytherin20/React/Assignment3/logo.png" width="150" height="100" />
+       <input type="search" className="search" />
+       <img src="https://raw.githubusercontent.com/slytherin20/React/Assignment3/user.png"  width="40" height="40"/>
+     </div>
+}
+
+function Container(){
+    return <div className="container">
+        <Header />
+        <p>Container body</p>
+    </div>
+}
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(container);
+root.render(<Container />);
