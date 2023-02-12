@@ -9,6 +9,7 @@ function AppLayout() {
   function searchValHandler(val) {
     setSearchVal(val);
   }
+
   return (
     <div className="app">
       <Header searchResults={searchValHandler} />
