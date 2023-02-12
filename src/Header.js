@@ -3,9 +3,12 @@ import { CART_ICON, FOOD_LOGO, USER_ICON } from "./constants";
 
 export default function Header({ searchResults }) {
   const [search, setSearch] = useState("");
-
+  const [loginStatus, setLoginStatus] = useState(false);
   function changeSearchVal(e) {
     setSearch(e.target.value);
+  }
+  function changeLoginStatus() {
+    setLoginStatus(!loginStatus);
   }
   return (
     <div className="header">
@@ -19,6 +22,15 @@ export default function Header({ searchResults }) {
       <div className="right-nav">
         <img src={USER_ICON} width="40" height="40" />
         <img src={CART_ICON} alt="cart" />
+        {loginStatus ? (
+          <button type="button" onClick={changeLoginStatus}>
+            Logout
+          </button>
+        ) : (
+          <button type="button" onClick={changeLoginStatus}>
+            Login
+          </button>
+        )}
       </div>
     </div>
   );
