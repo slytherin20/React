@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CART_ICON, FOOD_LOGO, USER_ICON } from "./constants";
+import { Link } from "react-router-dom";
+import { CART_ICON, FOOD_LOGO, USER_ICON } from "../constants";
 
 export default function Header({ searchResults }) {
   const [search, setSearch] = useState("");
@@ -20,6 +21,15 @@ export default function Header({ searchResults }) {
         </button>
       </div>
       <div className="right-nav">
+        <Link to="/">
+          <span>Home</span>
+        </Link>
+        <Link to="/about">
+          <span>About Us</span>
+        </Link>
+        <Link to="/contact">
+          <span>Contact Us</span>
+        </Link>
         <img src={USER_ICON} width="40" height="40" />
         <img src={CART_ICON} alt="cart" />
         {loginStatus ? (

@@ -1,4 +1,4 @@
-import { CLOUDANARY_API } from "./constants";
+import { CLOUDANARY_API } from "../constants";
 
 export default function RestaurantCard({ details }) {
   const { name, cuisines, totalRatingsString, cloudinaryImageId } = details;

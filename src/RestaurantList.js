@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API } from "../api_endpoint";
+import { Link } from "react-router-dom";
 function filterData(list, input) {
   if (input === "") return list;
   else {
@@ -19,10 +20,13 @@ export default function RestaurantList({ searchInput }) {
     getRestaurants();
   }, []);
   useEffect(() => {
-    let filterResult = filterData(restaurantsList, searchInput);
-    setFilteredList(filterResult);
+    setFilterData(restaurantsList);
   }, [searchInput]);
 
+  function setFilterData(list) {
+    let filterResult = filterData(list, searchInput);
+    setFilteredList(filterResult);
+  }
   async function getRestaurants() {
     let res = await fetch(SWIGGY_API);
     let restaurantsData = await res.json();
@@ -31,7 +35,10 @@ export default function RestaurantList({ searchInput }) {
       restaurantsData?.data?.cards[0]?.data?.data?.cards ||
       [];
     setRestaurantsList(restaurantsData);
-    setFilteredList(restaurantsData);
+    if (searchInput === "") setFilteredList(restaurantsData);
+    else {
+      setFilterData(restaurantsData);
+    }
   }
   if (!restaurantsList) return null; //Avoid rendering component: Early return
   if (!restaurantsList.length)
@@ -50,7 +57,12 @@ export default function RestaurantList({ searchInput }) {
       <h3>Restaurants</h3>
       <div className="restaurant-list">
         {filteredList.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} details={restaurant.data} />
+          <Link
+            to={`/restaurants/` + restaurant.data.id}
+            key={restaurant.data.id}
+          >
+            <RestaurantCard details={restaurant.data} />
+          </Link>
         ))}
       </div>
     </div>
