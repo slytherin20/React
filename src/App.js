@@ -14,6 +14,7 @@ import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import RouteError from "./RouteError";
 import RestaurantMenu from "./RestaurantMenu";
+import LoginForm from "./LoginForm";
 function AppLayout() {
   const [searchVal, setSearchVal] = useState("");
   const navigate = useNavigate();
@@ -56,6 +57,10 @@ const appRouter = createBrowserRouter([
       },
     ],
     errorElement: <RouteError />,
+  },
+  {
+    path: "/login",
+    element: <LoginForm />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

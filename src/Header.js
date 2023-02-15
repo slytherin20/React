@@ -37,9 +37,11 @@ export default function Header({ searchResults }) {
             Logout
           </button>
         ) : (
-          <button type="button" onClick={changeLoginStatus}>
-            Login
-          </button>
+          <Link to="/login">
+            <button type="button" onClick={changeLoginStatus}>
+              Login
+            </button>
+          </Link>
         )}
       </div>
     </div>

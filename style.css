@@ -120,3 +120,41 @@ body {
   height: 150px;
   background-color: gray;
 }
+.login-page {
+  width: 400px;
+  height: 400px;
+  border-radius: 25px;
+  border: solid 1px gainsboro;
+  margin: calc((100vh - 402px) / 2) auto;
+  font-family: sans-serif;
+}
+.login-page h1 {
+  text-align: center;
+}
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+#email,
+#password {
+  height: 30px;
+  margin-bottom: 20px;
+}
+.login-page form button {
+  width: 45%;
+  height: 30px;
+  margin: auto;
+  border-radius: 5px;
+  border: solid 1px orangered;
+  background-color: orangered;
+  color: white;
+  cursor: pointer;
+}
+.login-page form button:hover {
+  transform: scale(1.1);
+}
+.form-error {
+  color: orangered;
+}
