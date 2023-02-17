@@ -15,6 +15,9 @@ import ContactUs from "./ContactUs";
 import RouteError from "./RouteError";
 import RestaurantMenu from "./RestaurantMenu";
 import LoginForm from "./LoginForm";
+import AboutClass from "./AboutClass";
+import ProfileClass from "./ProfileClass";
+import SettingsClass from "./SettingsClass";
 function AppLayout() {
   const [searchVal, setSearchVal] = useState("");
   const navigate = useNavigate();
@@ -44,7 +47,17 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "about",
-        element: <AboutUs />,
+        element: <AboutClass />,
+        children: [
+          {
+            path: "profile",
+            element: <ProfileClass />,
+          },
+          {
+            path: "settings",
+            element: <SettingsClass />,
+          },
+        ],
       },
       {
         path: "contact",
@@ -64,8 +77,4 @@ const appRouter = createBrowserRouter([
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={appRouter} />
-  </React.StrictMode>
-);
+root.render(<RouterProvider router={appRouter} />);
