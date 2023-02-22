@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Header";
 import Body from "./Body";
@@ -10,7 +10,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import AboutUs from "./AboutUs";
+//import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import RouteError from "./RouteError";
 import RestaurantMenu from "./RestaurantMenu";
@@ -18,10 +18,14 @@ import LoginForm from "./LoginForm";
 import AboutClass from "./AboutClass";
 import ProfileClass from "./ProfileClass";
 import SettingsClass from "./SettingsClass";
+import useOnline from "./utils/useOnline";
+import OfflinePage from "./OfflinePage";
+import SignUp from "./SignUp";
 function AppLayout() {
   const [searchVal, setSearchVal] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const isOnline = useOnline();
 
   function searchValHandler(val) {
     setSearchVal(val);
@@ -31,7 +35,7 @@ function AppLayout() {
   return (
     <>
       <Header searchResults={searchValHandler} />
-      <Outlet context={searchVal} />
+      {isOnline ? <Outlet context={searchVal} /> : <OfflinePage />}
       <Footer />
     </>
   );
@@ -74,6 +78,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/login",
     element: <LoginForm />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

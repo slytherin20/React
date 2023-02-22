@@ -128,21 +128,39 @@ body {
   margin: calc((100vh - 402px) / 2) auto;
   font-family: sans-serif;
 }
-.login-page h1 {
+.signup-page {
+  width: 450px;
+  min-height: 600px;
+  border-radius: 25px;
+  border: solid 1px gainsboro;
+  margin: calc((100vh - 602px) / 2) auto;
+  font-family: sans-serif;
+}
+.login-page h1,
+.signup-page h1 {
   text-align: center;
 }
-.login-page form {
+.login-page form,
+.signup-page form {
   display: flex;
   flex-direction: column;
   width: 80%;
   margin: auto;
 }
 #email,
-#password {
+#password,
+#reenterPassword,
+#firstName,
+#lastName {
   height: 30px;
   margin-bottom: 20px;
 }
-.login-page form button {
+#firstName,
+#lastName {
+  width: calc(100% - 20px);
+}
+.login-page form button,
+.signup-page form button {
   width: 45%;
   height: 30px;
   margin: auto;
@@ -151,10 +169,20 @@ body {
   background-color: orangered;
   color: white;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 .login-page form button:hover {
   transform: scale(1.1);
 }
 .form-error {
   color: orangered;
+  margin: 0;
+  margin-bottom: 10px;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+.fullname {
+  display: flex;
 }
