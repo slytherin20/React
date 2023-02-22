@@ -1,31 +1,22 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { SWIGGY_RESTAURANT_API } from "../api_endpoint";
 import { CLOUDANARY_API } from "../constants";
 import RestaurantOverview from "./RestaurantOverview";
 import RestaurantDetailsShimmer from "./RestaurantDetailsShimmer";
+import useRestaurantMenu from "./utils/useRestaurantMenu.js";
 
 export default function RestaurantMenu() {
-  const [restaurantDetails, setRestaurantDetails] = useState([]);
-
   const { id } = useParams();
-  let cuisines = restaurantDetails?.cuisines?.join(", ") || "";
-  let location =
-    restaurantDetails?.locality +
+  let restaurantDetails = useRestaurantMenu(id);
+  let cuisines = restaurantDetails?.cuisines
+    ? restaurantDetails?.cuisines?.join(", ")
+    : "";
+  let location = restaurantDetails?.locality
+    ? restaurantDetails?.locality +
       ", " +
       restaurantDetails?.area +
       ", " +
-      restaurantDetails?.city || "";
-
-  useEffect(() => {
-    getRestaurantDetails();
-  }, []);
-
-  async function getRestaurantDetails() {
-    let res = await fetch(SWIGGY_RESTAURANT_API + id);
-    let data = await res.json();
-    setRestaurantDetails(data?.data);
-  }
+      restaurantDetails?.city
+    : "";
 
   if (!restaurantDetails) return null;
   else
