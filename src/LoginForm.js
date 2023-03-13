@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-
+import { Link } from "react-router-dom";
 export default function LoginForm() {
   const validate = (values) => {
     let errors = {};
@@ -22,34 +22,48 @@ export default function LoginForm() {
     },
   });
   return (
-    <div className="login-page">
-      <h1>Login</h1>
-      <form onSubmit={formik.handleSubmit}>
+    <div className="w-96 h-96 rounded-3xl border border-gray-200 font-sans login-page m-2">
+      <h1 className="text-center text-2xl">Login</h1>
+      <form
+        onSubmit={formik.handleSubmit}
+        className="flex flex-col w-10/12 m-auto"
+      >
         <label htmlFor="email">Email</label>
         <input
           type="email"
           name="email"
           id="email"
+          className="h-8 mb-5 border border-gray-300 rounded-md outline-none"
+          placeholder="Enter your E-mail address"
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
         {formik.touched.email && formik.errors.email ? (
-          <p className="form-error">{formik.errors.email}</p>
+          <p className="text-red-600">{formik.errors.email}</p>
         ) : null}
         <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
           id="password"
+          placeholder="Enter your password"
+          className="h-8 mb-5 border border-gray-300 rounded-md outline-none"
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
         {formik.touched.password && formik.errors.password ? (
-          <p className="form-error">{formik.errors.password}</p>
+          <p className="text-red-600">{formik.errors.password}</p>
         ) : null}
-        <button type="submit">Login</button>
+        <button type="submit" className="bg-red-600 text-white h-8 rounded-md">
+          Login
+        </button>
+        <Link to="/signup">
+          <p className="underline text-red-600 my-4">
+            No Existing Account? Sign Up!
+          </p>
+        </Link>
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CART_ICON, FOOD_LOGO, USER_ICON } from "../constants";
+import { CART_ICON, USER_ICON, FOOD_LOGO, SEARCH_ICON } from "../constants";
 
 export default function Header({ searchResults }) {
   const [search, setSearch] = useState("");
@@ -12,15 +12,28 @@ export default function Header({ searchResults }) {
     setLoginStatus(!loginStatus);
   }
   return (
-    <div className="header">
-      <img src={FOOD_LOGO} width="150" height="100" />
-      <div className="search-box">
-        <input type="search" className="search" onChange={changeSearchVal} />
-        <button type="button" onClick={() => searchResults(search)}>
-          Search
-        </button>
+    <div className="flex w-full justify-between items-center shadow-md flex-col sm:flex-row p-2">
+      <div className="flex items-center flex-col-reverse sm:flex-row">
+        <p className="text-2xl sm:text-4xl text-red-600">Zungry</p>
+        <img src={FOOD_LOGO} className="w-14 h-14" />
       </div>
-      <div className="right-nav">
+      <div className="h-10 shadow-md rounded-lg flex flex-row items-center w-full sm:w-96">
+        <input
+          type="search"
+          className="h-full rounded-lg w-11/12 p-1 outline-none "
+          placeholder="Search for a restaurant"
+          onChange={changeSearchVal}
+        />
+        <img
+          src={SEARCH_ICON}
+          alt="search"
+          onClick={() => searchResults(search)}
+          width="24"
+          height="24"
+          className="w-7 h-7"
+        />
+      </div>
+      <div className="flex flex-row w-full sm:w-80 mr-1 justify-between">
         <Link to="/">
           <span>Home</span>
         </Link>
@@ -30,12 +43,14 @@ export default function Header({ searchResults }) {
         <Link to="/contact">
           <span>Contact Us</span>
         </Link>
-        <img src={USER_ICON} width="40" height="40" />
         <img src={CART_ICON} alt="cart" />
         {loginStatus ? (
-          <button type="button" onClick={changeLoginStatus}>
-            Logout
-          </button>
+          <>
+            <img src={USER_ICON} width="40" height="40" />
+            <button type="button" onClick={changeLoginStatus}>
+              Logout
+            </button>
+          </>
         ) : (
           <Link to="/login">
             <button type="button" onClick={changeLoginStatus}>

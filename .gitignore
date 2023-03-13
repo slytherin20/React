@@ -4,3 +4,5 @@ dist
 .prettierrc
 api_endpoint.js
 .eslintrc.json
+.postcssrc.json
+tailwind.config.js

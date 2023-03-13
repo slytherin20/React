@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 export default function SignUp() {
   const formik = useFormik({
     initialValues: {
@@ -33,22 +34,26 @@ export default function SignUp() {
     },
   });
   return (
-    <div className="signup-page">
-      <h1>Sign Up</h1>
-      <form onSubmit={formik.handleSubmit}>
-        <div className="fullname">
+    <div className="w-96 h-[600px] rounded-3xl border border-gray-200 font-sans signup-page m-2">
+      <h1 className="text-center text-2xl">Sign Up</h1>
+      <form
+        onSubmit={formik.handleSubmit}
+        className="flex flex-col w-10/12 m-auto"
+      >
+        <div className="flex flex-col">
           <label htmlFor="firstName">
             First Name:
             <input
               type="text"
               name="firstName"
               id="firstName"
+              className="h-8 mb-5 border border-gray-300 rounded-md outline-none w-full"
               value={formik.values.firstName}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
             {formik.touched.firstName && formik.errors.firstName ? (
-              <p className="form-error">{formik.errors.firstName}</p>
+              <p className="text-red-600">{formik.errors.firstName}</p>
             ) : null}
           </label>
           <label htmlFor="lastName">
@@ -57,12 +62,13 @@ export default function SignUp() {
               type="text"
               name="lastName"
               id="lastName"
+              className="h-8 mb-5 border border-gray-300 rounded-md outline-none w-full"
               value={formik.values.lastName}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
             {formik.touched.lastName && formik.errors.lastName ? (
-              <p className="form-error">{formik.errors.lastName}</p>
+              <p className="text-red-600">{formik.errors.lastName}</p>
             ) : null}
           </label>
         </div>
@@ -71,38 +77,46 @@ export default function SignUp() {
           type="email"
           name="email"
           id="email"
+          className="h-8 mb-5 border border-gray-300 rounded-md outline-none"
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
         {formik.touched.email && formik.errors.email ? (
-          <p className="form-error">{formik.errors.email}</p>
+          <p className="text-red-600">{formik.errors.email}</p>
         ) : null}
         <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
           id="password"
+          className="h-8 mb-5 border border-gray-300 rounded-md outline-none"
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
         {formik.touched.password && formik.errors.password ? (
-          <p className="form-error">{formik.errors.password}</p>
+          <p className="text-red-600">{formik.errors.password}</p>
         ) : null}
         <label htmlFor="reenterPassword">Re-Enter the Password</label>
         <input
           type="password"
           name="reenterPassword"
           id="reenterPassword"
+          className="h-8 mb-5 border border-gray-300 rounded-md outline-none"
           value={formik.values.reenterPassword}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
         {formik.touched.reenterPassword && formik.errors.reenterPassword ? (
-          <p className="form-error">{formik.errors.reenterPassword}</p>
+          <p className="text-red-600">{formik.errors.reenterPassword}</p>
         ) : null}
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="bg-red-600 h-8 text-white rounded-md">
+          Sign Up
+        </button>
+        <Link to="/login">
+          <p className="underline text-red-600 my-4">Existing User? Login!</p>
+        </Link>
       </form>
     </div>
   );
