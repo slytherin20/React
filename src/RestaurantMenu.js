@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { CLOUDANARY_API } from "../constants";
+import { CLOUDANARY_API, NOPHOTO } from "../constants";
 import RestaurantOverview from "./RestaurantOverview";
 import RestaurantDetailsShimmer from "./RestaurantDetailsShimmer";
 import useRestaurantMenu from "./utils/useRestaurantMenu.js";
@@ -24,12 +24,13 @@ export default function RestaurantMenu() {
       <RestaurantDetailsShimmer />
     ) : (
       <div className="restaurant-menu">
-        <div className="restaurant-overview">
+        <div className="w-full h-72 bg-red-700 flex items-center justify-center">
           <img
             src={CLOUDANARY_API + restaurantDetails?.cloudinaryImageId}
             alt={restaurantDetails.name + " logo"}
-            width="250"
-            height="200"
+            width="300"
+            height="250"
+            className="h-52 w-64 sm:h-64 sm:w-80"
           />
           <RestaurantOverview
             name={restaurantDetails.name}
@@ -40,26 +41,37 @@ export default function RestaurantMenu() {
             costForTwo={restaurantDetails.costForTwoMsg}
           />
         </div>
-        <div className="menu-list">
+        <div className="m-4">
+          <p className="text-2xl">Menu</p>
           {Object.values(restaurantDetails?.menu?.items).map((item) => {
             return (
-              <div className="menu-item" key={item.id}>
-                <div className="menuitem-desc">
-                  <h3>{item.name}</h3>
-                  <p>₹{item.price / 100}</p>
-                  <p>{item.description}</p>
+              item.price > 0 && (
+                <div
+                  className="w-full flex justify-between m-3 border border-gray-300"
+                  key={item.id}
+                >
+                  <div className="p-1">
+                    <h3 className="text-xl">{item.name}</h3>
+                    <p className="text-sm">₹{item.price / 100}</p>
+                    <p>{item.description}</p>
+                  </div>
+                  {item.cloudinaryImageId ? (
+                    <img
+                      src={CLOUDANARY_API + item.cloudinaryImageId}
+                      alt="food"
+                      width="150"
+                      height="150"
+                    />
+                  ) : (
+                    <img
+                      src={NOPHOTO}
+                      alt="picture not available"
+                      width="150"
+                      height="150"
+                    />
+                  )}
                 </div>
-                {item.cloudinaryImageId ? (
-                  <img
-                    src={CLOUDANARY_API + item.cloudinaryImageId}
-                    alt="food"
-                    width="150"
-                    height="150"
-                  />
-                ) : (
-                  ""
-                )}
-              </div>
+              )
             );
           })}
         </div>
