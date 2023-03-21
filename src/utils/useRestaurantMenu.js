@@ -7,7 +7,7 @@ export default function useRestaurantMenu(id) {
     async function getRestaurantDetails() {
       let res = await fetch(SWIGGY_RESTAURANT_API + id);
       let data = await res.json();
-      setRestaurantDetails(data?.data);
+      setRestaurantDetails(data?.data?.cards);
     }
     getRestaurantDetails();
   }, []);

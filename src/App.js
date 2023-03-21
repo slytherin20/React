@@ -13,7 +13,7 @@ import {
 //import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import RouteError from "./RouteError";
-import RestaurantMenu from "./RestaurantMenu";
+import RestaurantDetails from "./RestaurantDetails";
 import LoginForm from "./LoginForm";
 import AboutClass from "./AboutClass";
 import ProfileClass from "./ProfileClass";
@@ -69,7 +69,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "restaurants/:id",
-        element: <RestaurantMenu />,
+        element: <RestaurantDetails />,
         errorElement: <RouteError />,
       },
     ],

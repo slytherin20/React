@@ -160,3 +160,6 @@ export const SEARCH_ICON = "https://i.imgur.com/FM3Dq4E.png";
 export const STAR_ICON = "https://i.imgur.com/pNmas09.png";
 
 export const NOPHOTO = "https://i.imgur.com/QeSb355.png";
+export const ARROW = "https://i.imgur.com/mczPdQW.png";
+export const VEG_LOGO = "https://i.imgur.com/lEMNtv0.png";
+export const NONVEG_LOGO = "https://i.imgur.com/qmye33X.png";
