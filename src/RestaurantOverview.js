@@ -18,7 +18,7 @@ export default function RestaurantOverview({
       ? "bg-yellow-500"
       : "bg-red-600";
   return (
-    <div className="w-full h-72 bg-red-700 flex items-center justify-center">
+    <div className="w-full h-72 bg-red-700 flex items-center justify-center mb-20">
       <img
         src={CLOUDANARY_API + restaurantImage}
         alt={name + " logo"}

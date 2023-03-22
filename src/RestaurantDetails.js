@@ -26,6 +26,7 @@ export default function RestaurantDetails() {
       setIsVisible(temp);
     }
   }, [restaurantDetails]);
+
   let restaurantInfo = restaurantDetails
     ? restaurantDetails[0]?.card?.card?.info
     : null;
@@ -63,19 +64,21 @@ export default function RestaurantDetails() {
           costForTwo={restaurantInfo.costForTwoMessage}
           restaurantImage={restaurantInfo?.cloudinaryImageId}
         />
-        {restaurantMenu.slice(2).map((item) => {
-          return (
-            !item.card.card.type &&
-            !item.card.card.name && (
-              <RestaurantSection
-                key={item.card.card.title}
-                items={item?.card?.card}
-                visibleSection={isVisible}
-                toggleMenuSection={visibilityHandler}
-              />
-            )
-          );
-        })}
+        <p className="text-2xl ml-32">Menu</p>
+        {restaurantMenu &&
+          restaurantMenu.slice(2).map((item) => {
+            return (
+              !item.card.card.type &&
+              !item.card.card.name && (
+                <RestaurantSection
+                  key={item.card.card.title}
+                  items={item?.card?.card}
+                  visibleSection={isVisible}
+                  toggleMenuSection={visibilityHandler}
+                />
+              )
+            );
+          })}
       </div>
     );
 }
