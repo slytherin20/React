@@ -1,8 +1,11 @@
 import { CLOUDANARY_API, STAR_ICON } from "../constants";
-
+import { UserContext } from "./utils/UserContext";
+import { useContext } from "react";
 export default function RestaurantCard({ details }) {
+  console.log("rendered");
   const { name, cuisines, totalRatingsString, cloudinaryImageId, avgRating } =
     details;
+  const user = useContext(UserContext);
   let ratingColor =
     avgRating >= 4
       ? "bg-green-900"
@@ -22,6 +25,9 @@ export default function RestaurantCard({ details }) {
           <span>| {avgRating}</span>
         </div>
         <p className="text-gray-500">{totalRatingsString}</p>
+        <p>
+          {user.user}:{user.email}
+        </p>
       </div>
     </div>
   );

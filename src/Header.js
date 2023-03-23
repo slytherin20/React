@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CART_ICON, USER_ICON, FOOD_LOGO, SEARCH_ICON } from "../constants";
-
+import { UserContext } from "./utils/UserContext";
 export default function Header({ searchResults }) {
   const [search, setSearch] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
+  const user = useContext(UserContext);
   function changeSearchVal(e) {
     setSearch(e.target.value);
   }
@@ -58,6 +59,9 @@ export default function Header({ searchResults }) {
             </button>
           </Link>
         )}
+        <p>
+          {user.user}:{user.email}
+        </p>
       </div>
     </div>
   );

@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { theme } from "./utils/UserContext";
+
 export default function ContactUs() {
-  return <p>You can contact us on - 1111111111</p>;
+  const appTheme = useContext(theme);
+  return <p>{appTheme}</p>;
 }
