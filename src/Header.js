@@ -1,11 +1,9 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CART_ICON, USER_ICON, FOOD_LOGO, SEARCH_ICON } from "../constants";
-import { UserContext } from "./utils/UserContext";
 export default function Header({ searchResults }) {
   const [search, setSearch] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
-  const user = useContext(UserContext);
   function changeSearchVal(e) {
     setSearch(e.target.value);
   }
@@ -44,7 +42,7 @@ export default function Header({ searchResults }) {
         <Link to="/contact">
           <span>Contact Us</span>
         </Link>
-        <img src={CART_ICON} alt="cart" />
+        <img src={CART_ICON} alt="cart" className="w-7 h-7" />
         {loginStatus ? (
           <>
             <img src={USER_ICON} width="40" height="40" />
@@ -59,9 +57,6 @@ export default function Header({ searchResults }) {
             </button>
           </Link>
         )}
-        <p>
-          {user.user}:{user.email}
-        </p>
       </div>
     </div>
   );

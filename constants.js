@@ -3,9 +3,6 @@ export const FOOD_LOGO = "https://i.imgur.com/c5XOd0b.png";
 export const USER_ICON =
   "https://raw.githubusercontent.com/slytherin20/React/Assignment3/logo.png";
 
-export const CART_ICON =
-  "https://raw.githubusercontent.com/slytherin20/React/Assignment4/assets/carts.png";
-
 export const restaurants = [
   {
     type: "restaurant",
@@ -163,3 +160,4 @@ export const NOPHOTO = "https://i.imgur.com/QeSb355.png";
 export const ARROW = "https://i.imgur.com/mczPdQW.png";
 export const VEG_LOGO = "https://i.imgur.com/lEMNtv0.png";
 export const NONVEG_LOGO = "https://i.imgur.com/qmye33X.png";
+export const CART_ICON = "https://i.imgur.com/wxiCrA4.png";
