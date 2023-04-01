@@ -1,9 +1,22 @@
 export function addFoodItem(state, action) {
-  state.items.push(action.payload);
+  let food = action.payload;
+  food.selectedQty = 1;
+  state.items.push(food);
 }
 
 export function removeFoodItem(state, action) {
-  state.items = state.items.filter((item) => item.id !== action.payload);
+  let items = state.items.map((item) => {
+    if (item.id == action.payload) {
+      if (item.selectedQty != 1) {
+        return {
+          ...item,
+          selectedQty: item.selectedQty - 1,
+        };
+      }
+    } else return item;
+  });
+  items = items.filter((item) => item != null);
+  state.items = items;
 }
 
 export function clearCart(state) {
@@ -15,4 +28,14 @@ export function savedRestaurantCart(state, action) {
 
 export function clearSavedRestaurant(state) {
   state.restaurantDetails = {};
+}
+
+export function updateFoodItemCount(state, action) {
+  state.items = state.items.map((item) => {
+    let food = item;
+    if (food.id === action.payload) {
+      food.selectedQty = food.selectedQty + 1;
+    }
+    return food;
+  });
 }

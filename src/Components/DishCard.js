@@ -10,24 +10,40 @@ import {
   cartRestaurant,
   removeItem,
   removeRestaurant,
+  updateItemCount,
 } from "../Store/CartSlice";
 import Modal from "./Modal";
 import { useState } from "react";
 import Customizations from "./Customizations";
+import { useEffect } from "react";
 
 export default function DishCard({ dish, restaurantInfo }) {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
-  let sizeVariations = dish.variantsV2?.variantGroups
-    ? dish.variantsV2.variantGroups[0]?.variations
+  const [count, setCount] = useState(0);
+  let sizeVariations = dish?.variantsV2?.variantGroups
+    ? dish?.variantsV2.variantGroups[0]?.variations
     : null;
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
+  useEffect(() => {
+    if (cartItems.length) {
+      let item = cartItems.filter((item) => item.id === dish.id);
+      if (item.length) {
+        setCount(item[0].selectedQty);
+      }
+    }
+  }, [cartItems]);
+
   function addToCart(item) {
     if (sizeVariations) {
       toggleModal();
     } else {
-      dispatch(addItem(item));
-      dispatch(cartRestaurant(restaurantInfo));
+      if (count === 0) {
+        dispatch(addItem(item));
+        dispatch(cartRestaurant(restaurantInfo));
+      } else {
+        dispatch(updateItemCount(item.id));
+      }
     }
   }
   function toggleModal() {
@@ -40,6 +56,7 @@ export default function DishCard({ dish, restaurantInfo }) {
       dispatch(removeRestaurant());
     }
   }
+  if (!dish) return null;
   return (
     <div className="m-4 relative">
       {
@@ -73,6 +90,7 @@ export default function DishCard({ dish, restaurantInfo }) {
                   sizeVariations={sizeVariations}
                   dish={dish}
                   restaurantInfo={restaurantInfo}
+                  count={count}
                 />
               </Modal>
             )}
@@ -94,21 +112,21 @@ export default function DishCard({ dish, restaurantInfo }) {
               className="w-36 h-30"
             />
           )}
-
-          <button
-            className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-0 right-5 text-sm
+          {count === 0 ? (
+            <button
+              className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-0 right-5 text-sm
           "
-            onClick={() => addToCart(dish)}
-          >
-            Add
-          </button>
-          <button
-            className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-3 right-0 text-sm"
-            onClick={() => removeFromCart(dish.id)}
-          >
-            Remove
-          </button>
-          <div className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-0 right-5 text-sm"></div>
+              onClick={() => addToCart(dish)}
+            >
+              Add
+            </button>
+          ) : (
+            <div className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-0 right-5 text-sm flex justify-evenly items-center">
+              <button onClick={() => addToCart(dish)}>+</button>
+              <span>{count}</span>
+              <button onClick={() => removeFromCart(dish.id)}>-</button>
+            </div>
+          )}
         </div>
       }
     </div>

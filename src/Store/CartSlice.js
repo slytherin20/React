@@ -5,6 +5,7 @@ import {
   clearSavedRestaurant,
   removeFoodItem,
   savedRestaurantCart,
+  updateFoodItemCount,
 } from "../Reducers/cartReducers";
 const cartSlice = createSlice({
   name: "cart",
@@ -18,6 +19,7 @@ const cartSlice = createSlice({
     emptyCart: clearCart,
     cartRestaurant: savedRestaurantCart,
     removeRestaurant: clearSavedRestaurant,
+    updateItemCount: updateFoodItemCount,
   },
 });
 
@@ -28,4 +30,5 @@ export const {
   emptyCart,
   cartRestaurant,
   removeRestaurant,
+  updateItemCount,
 } = cartSlice.actions;

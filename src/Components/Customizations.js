@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem, cartRestaurant } from "../Store/CartSlice";
+import { addItem, cartRestaurant, updateItemCount } from "../Store/CartSlice";
 
 export default function Customizations({
   toggleModal,
@@ -8,15 +8,27 @@ export default function Customizations({
   sizeVariations,
   dish,
   restaurantInfo,
+  count,
 }) {
   const [selectedOptions, setSelectedOption] = useState(null);
   const dispatch = useDispatch();
 
   function addItemToCart() {
     let selectedItem = dish;
-    selectedItem.selectedSize = selectedOptions;
-    dispatch(addItem(selectedItem));
-    dispatch(cartRestaurant(restaurantInfo));
+    if (selectedItem.selectedOptions) {
+      selectedItem.selectedSize = [
+        ...selectedItem.selectedSize,
+        selectedOptions,
+      ];
+    } else {
+      selectedItem.selectedSize = [selectedOptions];
+    }
+    if (count === 0) {
+      dispatch(addItem(selectedItem));
+      dispatch(cartRestaurant(restaurantInfo));
+    } else {
+      dispatch(updateItemCount(selectedItem.id));
+    }
     toggleModal();
   }
   function selectMenuOption(e) {

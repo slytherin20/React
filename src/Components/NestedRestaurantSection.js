@@ -7,6 +7,7 @@ export default function NestedRestaurantSection({ dishes, restaurantInfo }) {
   function selectCategory(e) {
     setIsVisibleCategory(e.target.innerText);
   }
+
   return (
     <div className="flex flex-row w-full justify-between">
       <div className="flex flex-col justify-start items-start ">
