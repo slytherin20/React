@@ -8,3 +8,6 @@
 .signup-page {
   margin: calc((100vh - 602px) / 2) auto;
 }
+.bg-accent-gray {
+  background-color: rgba(0, 0, 0, 0.2);
+}

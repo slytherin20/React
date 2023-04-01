@@ -1,9 +1,45 @@
-import { CLOUDANARY_API, NONVEG_LOGO, NOPHOTO, VEG_LOGO } from "../constants";
-export default function DishCard({ dish }) {
+import {
+  CLOUDANARY_API,
+  NONVEG_LOGO,
+  NOPHOTO,
+  VEG_LOGO,
+} from "../../constants";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  cartRestaurant,
+  removeItem,
+  removeRestaurant,
+} from "../Store/CartSlice";
+import Modal from "./Modal";
+import { useState } from "react";
+import Customizations from "./Customizations";
+
+export default function DishCard({ dish, restaurantInfo }) {
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
   let sizeVariations = dish.variantsV2?.variantGroups
     ? dish.variantsV2.variantGroups[0]?.variations
     : null;
+  const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store.cart.items);
+  function addToCart(item) {
+    if (sizeVariations) {
+      toggleModal();
+    } else {
+      dispatch(addItem(item));
+      dispatch(cartRestaurant(restaurantInfo));
+    }
+  }
+  function toggleModal() {
+    setIsVisibleModal(!isVisibleModal);
+  }
 
+  function removeFromCart(id) {
+    dispatch(removeItem(id));
+    if (cartItems.length === 1) {
+      dispatch(removeRestaurant());
+    }
+  }
   return (
     <div className="m-4 relative">
       {
@@ -29,30 +65,16 @@ export default function DishCard({ dish }) {
             {dish.price && <p className="text-sm">₹{dish.price / 100}</p>}
 
             <p>{dish.description}</p>
-            {sizeVariations && (
-              <div>
-                <p>Size Options:</p>
-                {sizeVariations.map((size) => {
-                  return (
-                    <p
-                      key={size.id}
-                      className="flex flex-row justify-between w-1/2"
-                    >
-                      {size.name}
-                      <label htmlFor={size.id}>
-                        <input
-                          type="radio"
-                          key={size.id}
-                          value={size.price}
-                          id={size.id}
-                          name="price"
-                        />
-                        ₹{size.price}
-                      </label>
-                    </p>
-                  );
-                })}
-              </div>
+            {isVisibleModal && (
+              <Modal>
+                <Customizations
+                  toggleModal={toggleModal}
+                  isVisibleModal={isVisibleModal}
+                  sizeVariations={sizeVariations}
+                  dish={dish}
+                  restaurantInfo={restaurantInfo}
+                />
+              </Modal>
             )}
           </div>
           {dish.imageId ? (
@@ -76,9 +98,17 @@ export default function DishCard({ dish }) {
           <button
             className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-0 right-5 text-sm
           "
+            onClick={() => addToCart(dish)}
           >
             Add
           </button>
+          <button
+            className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-3 right-0 text-sm"
+            onClick={() => removeFromCart(dish.id)}
+          >
+            Remove
+          </button>
+          <div className="absolute bg-red-500 text-white w-20 h-8 rounded-md bottom-0 right-5 text-sm"></div>
         </div>
       }
     </div>

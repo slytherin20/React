@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { CART_ICON, USER_ICON, FOOD_LOGO, SEARCH_ICON } from "../constants";
+import { CART_ICON, USER_ICON, FOOD_LOGO, SEARCH_ICON } from "../../constants";
 export default function Header({ searchResults }) {
   const [search, setSearch] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
+  const cartItems = useSelector((store) => store.cart.items);
   function changeSearchVal(e) {
     setSearch(e.target.value);
   }
@@ -42,7 +44,12 @@ export default function Header({ searchResults }) {
         <Link to="/contact">
           <span>Contact Us</span>
         </Link>
-        <img src={CART_ICON} alt="cart" className="w-7 h-7" />
+        <Link to="/cart">
+          <div className="inline-block">
+            <img src={CART_ICON} alt="cart" className="w-7 h-7" />
+            <span>{cartItems.length}</span>
+          </div>
+        </Link>
         {loginStatus ? (
           <>
             <img src={USER_ICON} width="40" height="40" />

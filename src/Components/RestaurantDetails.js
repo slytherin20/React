@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import RestaurantOverview from "./RestaurantOverview";
 import RestaurantDetailsShimmer from "./RestaurantDetailsShimmer";
-import useRestaurantMenu from "./utils/useRestaurantMenu.js";
+import useRestaurantMenu from "../utils/useRestaurantMenu.js";
 import RestaurantSection from "./RestaurantSection";
 import { useState, useEffect } from "react";
 
@@ -75,6 +75,7 @@ export default function RestaurantDetails() {
                   items={item?.card?.card}
                   visibleSection={isVisible}
                   toggleMenuSection={visibilityHandler}
+                  restaurantInfo={restaurantInfo}
                 />
               )
             );

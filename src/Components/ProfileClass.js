@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { SWIGGY_API } from "../api_endpoint";
+import { SWIGGY_API } from "../../api_endpoint";
 
 export default class ProfileClass extends Component {
   constructor(props) {

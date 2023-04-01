@@ -18,10 +18,12 @@ import LoginForm from "./LoginForm";
 import AboutClass from "./AboutClass";
 import ProfileClass from "./ProfileClass";
 import SettingsClass from "./SettingsClass";
-import useOnline from "./utils/useOnline";
+import useOnline from "../utils/useOnline";
 import OfflinePage from "./OfflinePage";
 import SignUp from "./SignUp";
-
+import { Provider } from "react-redux";
+import store from "../Store/store";
+import Cart from "./Cart";
 function AppLayout() {
   const [searchVal, setSearchVal] = useState("");
   const navigate = useNavigate();
@@ -34,11 +36,11 @@ function AppLayout() {
   }
 
   return (
-    <>
+    <Provider store={store}>
       <Header searchResults={searchValHandler} />
       {isOnline ? <Outlet context={searchVal} /> : <OfflinePage />}
       <Footer />
-    </>
+    </Provider>
   );
 }
 const appRouter = createBrowserRouter([
@@ -71,6 +73,11 @@ const appRouter = createBrowserRouter([
       {
         path: "restaurants/:id",
         element: <RestaurantDetails />,
+        errorElement: <RouteError />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
         errorElement: <RouteError />,
       },
     ],
