@@ -34,7 +34,7 @@ export default function SignUp() {
     },
   });
   return (
-    <div className="w-96 h-[600px] rounded-3xl border border-gray-200 font-sans signup-page m-2">
+    <div className="w-96 h-[600px] rounded-3xl border border-gray-200 font-sans sp m-2">
       <h1 className="text-center text-2xl">Sign Up</h1>
       <form
         onSubmit={formik.handleSubmit}

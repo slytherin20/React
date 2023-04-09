@@ -7,3 +7,10 @@ export function filterData(list, input) {
     return result;
   }
 }
+
+export function countSize(sizeTypes) {
+  return Object.keys(sizeTypes).reduce(
+    (count, sizeType) => count + sizeTypes[sizeType],
+    0
+  );
+}

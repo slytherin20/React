@@ -1,8 +1,6 @@
 export const FOOD_LOGO = "https://i.imgur.com/c5XOd0b.png";
-
 export const USER_ICON =
   "https://raw.githubusercontent.com/slytherin20/React/Assignment3/logo.png";
-
 export const restaurants = [
   {
     type: "restaurant",
@@ -148,16 +146,13 @@ export const restaurants = [
     },
   },
 ];
-
 export const CLOUDANARY_API =
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
-
 export const SEARCH_ICON = "https://i.imgur.com/FM3Dq4E.png";
-
 export const STAR_ICON = "https://i.imgur.com/pNmas09.png";
-
 export const NOPHOTO = "https://i.imgur.com/QeSb355.png";
 export const ARROW = "https://i.imgur.com/mczPdQW.png";
 export const VEG_LOGO = "https://i.imgur.com/lEMNtv0.png";
 export const NONVEG_LOGO = "https://i.imgur.com/qmye33X.png";
 export const CART_ICON = "https://i.imgur.com/wxiCrA4.png";
+export const CLOSE_BTN = "https://i.imgur.com/7BUT1pH.png";

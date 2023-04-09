@@ -11,11 +11,13 @@ import {
   removeItem,
   removeRestaurant,
   updateItemCount,
+  removeCustomizedItem,
 } from "../Store/CartSlice";
 import Modal from "./Modal";
 import { useState } from "react";
 import Customizations from "./Customizations";
 import { useEffect } from "react";
+import { countSize } from "../utils/helper";
 
 export default function DishCard({ dish, restaurantInfo }) {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
@@ -25,13 +27,20 @@ export default function DishCard({ dish, restaurantInfo }) {
     : null;
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
+
   useEffect(() => {
     if (cartItems.length) {
-      let item = cartItems.filter((item) => item.id === dish.id);
-      if (item.length) {
-        setCount(item[0].selectedQty);
+      let item = cartItems.filter((item) => item.id === dish.id)[0];
+      if (item) {
+        if (item.selectedOptions) {
+          let sizeTypes = item.selectedOptions.size;
+          let c = countSize(sizeTypes);
+          setCount(c);
+        } else {
+          setCount(item.selectedQty);
+        }
       }
-    }
+    } else setCount(0);
   }, [cartItems]);
 
   function addToCart(item) {
@@ -51,9 +60,20 @@ export default function DishCard({ dish, restaurantInfo }) {
   }
 
   function removeFromCart(id) {
-    dispatch(removeItem(id));
-    if (cartItems.length === 1) {
-      dispatch(removeRestaurant());
+    let item = cartItems.find((item) => item.id == id);
+    if (!item) return;
+
+    if (!item.selectedOptions?.size) {
+      dispatch(removeItem(id));
+      if (cartItems.length === 1) {
+        dispatch(removeRestaurant());
+      }
+    } else {
+      let c = countSize(item.selectedOptions.size);
+      if (c === 1) {
+        dispatch(removeCustomizedItem(id));
+        dispatch(removeRestaurant());
+      } else toggleModal();
     }
   }
   if (!dish) return null;
@@ -91,6 +111,7 @@ export default function DishCard({ dish, restaurantInfo }) {
                   dish={dish}
                   restaurantInfo={restaurantInfo}
                   count={count}
+                  cartItems={cartItems}
                 />
               </Modal>
             )}

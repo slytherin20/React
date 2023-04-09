@@ -39,3 +39,19 @@ export function updateFoodItemCount(state, action) {
     return food;
   });
 }
+
+export function updateCustomizedFoodItemCount(state, action) {
+  state.items = state.items.map((item) => {
+    if (item.id == action.payload.id) {
+      let selectedItem = { ...item };
+      selectedItem.selectedOptions.size = action.payload.selectedOption;
+      return selectedItem;
+    } else {
+      return item;
+    }
+  });
+}
+
+export function removeCustomizedFoodItem(state, action) {
+  state.items = state.items.filter((item) => item.id != action.payload);
+}

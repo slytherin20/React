@@ -3,8 +3,10 @@ import {
   addFoodItem,
   clearCart,
   clearSavedRestaurant,
+  removeCustomizedFoodItem,
   removeFoodItem,
   savedRestaurantCart,
+  updateCustomizedFoodItemCount,
   updateFoodItemCount,
 } from "../Reducers/cartReducers";
 const cartSlice = createSlice({
@@ -20,6 +22,8 @@ const cartSlice = createSlice({
     cartRestaurant: savedRestaurantCart,
     removeRestaurant: clearSavedRestaurant,
     updateItemCount: updateFoodItemCount,
+    updateCustomizedItemCount: updateCustomizedFoodItemCount,
+    removeCustomizedItem: removeCustomizedFoodItem,
   },
 });
 
@@ -31,4 +35,6 @@ export const {
   cartRestaurant,
   removeRestaurant,
   updateItemCount,
+  updateCustomizedItemCount,
+  removeCustomizedItem,
 } = cartSlice.actions;
