@@ -22,7 +22,7 @@ export default function LoginForm() {
     },
   });
   return (
-    <div className="w-96 h-96 rounded-3xl border border-gray-200 font-sans login-page m-2">
+    <div className="w-96 h-96 rounded-3xl border border-gray-200 font-sans lp m-2">
       <h1 className="text-center text-2xl">Login</h1>
       <form
         onSubmit={formik.handleSubmit}

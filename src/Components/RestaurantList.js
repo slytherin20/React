@@ -2,8 +2,8 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import { filterData } from "./utils/helper";
-import useRestaurantList from "./utils/useRestaurantList";
+import { filterData } from "../utils/helper";
+import useRestaurantList from "../utils/useRestaurantList";
 
 export default function RestaurantList({ searchInput }) {
   const [filteredList, setFilteredList] = useState([]);

@@ -1,10 +1,11 @@
-import { ARROW } from "../constants";
+import { ARROW } from "../../constants";
 import DishCard from "./DishCard";
 import NestedRestaurantSection from "./NestedRestaurantSection";
 export default function RestaurantSection({
   items,
   visibleSection,
   toggleMenuSection,
+  restaurantInfo,
 }) {
   function toggleSection(name) {
     toggleMenuSection(name);
@@ -31,12 +32,21 @@ export default function RestaurantSection({
         />
       </p>
       {items.categories && visibleSection[items.title] && (
-        <NestedRestaurantSection dishes={items.categories} />
+        <NestedRestaurantSection
+          dishes={items.categories}
+          restaurantInfo={restaurantInfo}
+        />
       )}
       {items.itemCards && visibleSection[items.title] && (
         <div>
           {items.itemCards.map((el) => {
-            return <DishCard dish={el.card.info} key={el.card.info.id} />;
+            return (
+              <DishCard
+                dish={el.card.info}
+                key={el.card.info.id}
+                restaurantInfo={restaurantInfo}
+              />
+            );
           })}
         </div>
       )}
