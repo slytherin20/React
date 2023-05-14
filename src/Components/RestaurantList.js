@@ -22,7 +22,10 @@ export default function RestaurantList({ searchInput }) {
     return (
       <div className="m-2 sm:m-11">
         <p className="h-6 w-48 bg-gray-400 my-6"></p>
-        <div className="flex flex-row flex-wrap justify-center">
+        <div
+          className="flex flex-row flex-wrap justify-center"
+          data-testid="homepage-shimmer"
+        >
           {Array(15)
             .fill(1, 0, 14)
             .map((el, i) => (
@@ -35,7 +38,10 @@ export default function RestaurantList({ searchInput }) {
   return (
     <div className="m-2 sm:m-11">
       <h3 className="text-2xl">Restaurants</h3>
-      <div className="flex flex-row flex-wrap justify-center">
+      <div
+        className="flex flex-row flex-wrap justify-center"
+        data-testid="restaurants"
+      >
         {filteredList.map((restaurant) => (
           <Link
             to={`/restaurants/` + restaurant.data.id}

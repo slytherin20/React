@@ -3,5 +3,5 @@ node_modules
 dist
 .prettierrc
 api_endpoint.js
-.eslintrc.json
 .postcssrc.json
+coverage
