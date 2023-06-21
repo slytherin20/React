@@ -5,7 +5,6 @@ import { render, waitFor } from "@testing-library/react";
 import { restaurantDetails } from "../../api_endpoint";
 import "@testing-library/jest-dom";
 import RestaurantList from "../Components/RestaurantList";
-
 global.fetch = jest.fn(() => {
   return Promise.resolve({
     json: () => Promise.resolve(restaurantDetails),
