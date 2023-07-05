@@ -1,7 +1,8 @@
 export function addFoodItem(state, action) {
   let food = action.payload;
-  food.selectedQty = 1;
-  state.items.push(food);
+  let foodObj = Object.assign({}, food);
+  foodObj.selectedQty = 1;
+  state.items.push(foodObj);
 }
 
 export function removeFoodItem(state, action) {
