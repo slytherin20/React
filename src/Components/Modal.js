@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
-const modalContainer = document.querySelector("#modal");
-const body = document.querySelector("body");
 function Modal({ children }) {
+  const modalContainer = document.querySelector("#modal");
+  const body = document.querySelector("body");
   const modal = document.createElement("div");
   modal.setAttribute(
     "class",

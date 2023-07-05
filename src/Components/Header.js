@@ -38,6 +38,7 @@ export default function Header({ searchResults }) {
           width="24"
           height="24"
           className="w-7 h-7"
+          data-testid="search-btn"
         />
       </div>
       <div className="flex flex-row w-full sm:w-80 mr-1 justify-between">

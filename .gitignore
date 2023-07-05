@@ -5,3 +5,5 @@ dist
 api_endpoint.js
 .postcssrc.json
 coverage
+.babelrc
+.eslintrc.json

@@ -87,7 +87,10 @@ export default function Customizations({
     }
   }
   return (
-    <div className="w-3/5 h-96 bg-white rounded-md p-4">
+    <div
+      className="w-3/5 h-96 bg-white rounded-md p-4"
+      data-testid="customization-menu"
+    >
       <p className="h-8">
         <img
           src={CLOSE_BTN}
@@ -117,6 +120,7 @@ export default function Customizations({
                       id={size.id}
                       name="price"
                       className={size.name}
+                      data-testid="custom-option"
                     />
                     ₹{size.price}
                   </label>
@@ -141,6 +145,7 @@ export default function Customizations({
                         name="increase"
                         className={size.name}
                         onClick={(e) => selectMenuOption(e)}
+                        data-testid="cust-inc-count"
                       />
                     </p>
                     <p className="border border-r-green-500 w-1/3 h-full p-1 text-center">
@@ -155,6 +160,7 @@ export default function Customizations({
                         name="decrease"
                         className={size.name}
                         onClick={(e) => selectMenuOption(e)}
+                        data-testid="cust-decrease-count"
                       />
                     </p>
                   </div>
@@ -166,6 +172,7 @@ export default function Customizations({
       <button
         onClick={updateCount}
         className="bg-green-600 text-white font-bold p-2 rounded-md text-sm float-right"
+        data-testid="continue-btn"
       >
         Continue
       </button>
